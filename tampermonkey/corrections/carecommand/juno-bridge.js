@@ -25,7 +25,7 @@
 
   // UPDATED to recognize both "Add Demographic" pages
   const isOscarAddPage = () => {
-    if (location.hostname !== "rock-doc.secure.junoemr.com") {
+    if (location.hostname !== "van-jail.secure.junoemr.com") {
       return false;
     }
     const isOriginalPage = location.pathname.includes("demographiccontrol.jsp") &&
@@ -118,7 +118,7 @@
 
       container.appendChild(
         makeBtn("🔍 Search JunoEMR by PHN", "btn-phn", "#28a745", () => {
-          const url = `https://rock-doc.secure.junoemr.com/juno/demographic/demographiccontrol.jsp?search_mode=search_hin&keyword=${encodeURIComponent(phn)}&orderby=last_name%2C+first_name&dboperation=search_titlename&limit1=0&limit2=10&displaymode=Search&ptstatus=active&fromMessenger=false&outofdomain=&limit=10`;
+          const url = `https://van-jail.secure.junoemr.com/juno/demographic/demographiccontrol.jsp?search_mode=search_hin&keyword=${encodeURIComponent(phn)}&orderby=last_name%2C+first_name&dboperation=search_titlename&limit1=0&limit2=10&displaymode=Search&ptstatus=active&fromMessenger=false&outofdomain=&limit=10`;
           window.open(url, "_blank");
         })
       );
@@ -126,7 +126,7 @@
       container.appendChild(
         makeBtn("👤 Search JunoEMR by Name", "btn-name", "#ff9800", () => {
           const keyword = encodeURIComponent(fullName);
-          const url = `https://rock-doc.secure.junoemr.com/juno/demographic/demographiccontrol.jsp?search_mode=search_name&keyword=${keyword}&orderby=last_name%2C+first_name&dboperation=search_titlename&limit1=0&limit2=10&displaymode=Search&ptstatus=active&fromMessenger=false&outofdomain=&limit=10`;
+          const url = `https://van-jail.secure.junoemr.com/juno/demographic/demographiccontrol.jsp?search_mode=search_name&keyword=${keyword}&orderby=last_name%2C+first_name&dboperation=search_titlename&limit1=0&limit2=10&displaymode=Search&ptstatus=active&fromMessenger=false&outofdomain=&limit=10`;
           window.open(url, "_blank");
         })
       );
