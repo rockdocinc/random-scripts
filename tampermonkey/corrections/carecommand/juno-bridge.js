@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         CareCommand ➜ JunoEMR Demographics Bridge
 // @namespace    https://rockdoccorrections.com
-// @version      1.0
+// @version      1.1
 // @updateURL    https://rockdocinc.github.io/random-scripts/tampermonkey/corrections/carecommand/juno-bridge.js
 // @downloadURL  https://rockdocinc.github.io/random-scripts/tampermonkey/corrections/carecommand/juno-bridge.js
 // @description  Copy demographics + quick-search buttons for JunoEMR
 // @author       Deven Prasad for Rockdoc Corrections Inc.
 // @match        https://carecommand.rockdoccorrections.com/*
-// @match        https://rock-doc.secure.junoemr.com/juno/demographic/demographiccontrol.jsp?displaymode=add*
-// @match        https://rock-doc.secure.junoemr.com/juno/demographic/demographicaddarecordhtm.jsp*
+// @match        https://van-jail.secure.junoemr.com/juno/demographic/demographiccontrol.jsp?displaymode=add*
+// @match        https://van-jail.secure.junoemr.com/juno/demographic/demographicaddarecordhtm.jsp*
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        GM_deleteValue
