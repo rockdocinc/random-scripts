@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CareCommand ➜ JunoEMR Demographics Bridge
 // @namespace    https://rockdoccorrections.com
-// @version      1.1
+// @version      1.2
 // @updateURL    https://rockdocinc.github.io/random-scripts/tampermonkey/corrections/carecommand/juno-bridge.js
 // @downloadURL  https://rockdocinc.github.io/random-scripts/tampermonkey/corrections/carecommand/juno-bridge.js
 // @description  Copy demographics + quick-search buttons for JunoEMR
