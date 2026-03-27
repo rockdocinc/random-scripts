@@ -1,0 +1,888 @@
+{
+  "title": "Virtual Travel Clinic Intake Form",
+  "logo": "https://assets.virtualtravelclinic.ca/images/logos/vtc-logo-dark-blue-white-bg.png",
+  "logoHeight": "100px",
+  "autoFocusFirstQuestion": true,
+  "completedHtml": "Your Virtual Travel Clinic Intake Form has been successfully submitted.",
+  "completedBeforeHtml": "Our records show that you have already submitted the Virtual Travel Clinic Intake Form.",
+  "loadingHtml": "Loading Intake Form...",
+  "pages": [
+    {
+      "name": "demographics",
+      "title": "Demographics",
+      "elements": [
+        {
+          "type": "panel",
+          "name": "legal_name",
+          "title": "Legal Name",
+          "elements": [
+            {
+              "type": "text",
+              "name": "first_name",
+              "title": "First Name",
+              "isRequired": true,
+              "autocomplete": "given-name"
+            },
+            {
+              "type": "text",
+              "name": "middle_name",
+              "startWithNewLine": false,
+              "title": "Middle Name",
+              "autocomplete": "additional-name"
+            },
+            {
+              "type": "text",
+              "name": "last_name",
+              "startWithNewLine": false,
+              "title": "Last Name",
+              "isRequired": true,
+              "autocomplete": "family-name"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "date_of_birth",
+          "title": "Date of Birth",
+          "isRequired": true,
+          "inputType": "date",
+          "autocomplete": "bday"
+        },
+        {
+          "type": "dropdown",
+          "name": "gender",
+          "startWithNewLine": false,
+          "title": "Gender",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "female",
+              "text": "Female"
+            },
+            {
+              "value": "male",
+              "text": "Male"
+            },
+            {
+              "value": "transgender",
+              "text": "Transgender"
+            },
+            {
+              "value": "non_binary",
+              "text": "Non-Binary"
+            },
+            {
+              "value": "unidentified",
+              "text": "Unidentified"
+            },
+            {
+              "value": "other",
+              "text": "Other"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "pediatric_patient_weight",
+          "visibleIf": "age({date_of_birth}) < 18",
+          "title": "Pediatric Patient Weight (kg)",
+          "isRequired": true,
+          "inputType": "number",
+          "min": 0,
+          "max": 450,
+          "step": 1
+        },
+        {
+          "type": "dropdown",
+          "name": "country_of_birth",
+          "title": "Country of Birth",
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "https://raw.githubusercontent.com/rockdocinc/vtc_country-json/refs/heads/master/src/country-by-name.json",
+            "valueName": "country",
+            "titleName": "country"
+          }
+        },
+        {
+          "type": "panel",
+          "name": "provincial_health_card",
+          "title": "Provincial Health Card",
+          "elements": [
+            {
+              "type": "boolean",
+              "name": "has_provincial_health_card",
+              "title": "Do you have a Provincial Health Card?",
+              "isRequired": true
+            },
+            {
+              "type": "dropdown",
+              "name": "provincial_health_card_province",
+              "visibleIf": "{has_provincial_health_card} = true",
+              "title": "Health Card Province",
+              "isRequired": true,
+              "choices": [
+                {
+                  "value": "BC",
+                  "text": "British Columbia"
+                },
+                {
+                  "value": "AB",
+                  "text": "Alberta"
+                },
+                {
+                  "value": "SK",
+                  "text": "Saskatchewan"
+                },
+                {
+                  "value": "MB",
+                  "text": "Manitoba"
+                },
+                {
+                  "value": "ON",
+                  "text": "Ontario"
+                },
+                {
+                  "value": "QC",
+                  "text": "Quebec"
+                },
+                {
+                  "value": "NB",
+                  "text": "New Brunswick"
+                },
+                {
+                  "value": "PE",
+                  "text": "Prince Edward Island"
+                },
+                {
+                  "value": "NS",
+                  "text": "Nova Scotia"
+                },
+                {
+                  "value": "NL",
+                  "text": "Newfoundland and Labrador"
+                },
+                {
+                  "value": "YT",
+                  "text": "Yukon"
+                },
+                {
+                  "value": "NU",
+                  "text": "Nunavut"
+                },
+                {
+                  "value": "NT",
+                  "text": "Northwest Territories"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "name": "provincial_health_card_number",
+              "visibleIf": "{has_provincial_health_card} = true",
+              "title": "Health Card Number",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "provincial_health_card_version_code",
+              "visibleIf": "{has_provincial_health_card} = true and {provincial_health_card_province} = 'ON'",
+              "startWithNewLine": false,
+              "title": "Health Card Version Code",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "contact_information",
+      "title": "Contact Information",
+      "elements": [
+        {
+          "type": "text",
+          "name": "phone_number",
+          "title": "Phone Number",
+          "isRequired": true,
+          "inputType": "tel",
+          "autocomplete": "tel",
+          "maskType": "pattern",
+          "maskSettings": {
+            "pattern": "(999) 999-9999"
+          }
+        },
+        {
+          "type": "text",
+          "name": "email",
+          "startWithNewLine": false,
+          "title": "Email",
+          "isRequired": true,
+          "inputType": "email",
+          "autocomplete": "email"
+        },
+        {
+          "type": "panel",
+          "name": "address",
+          "title": "Address",
+          "elements": [
+            {
+              "type": "text",
+              "name": "address_line1",
+              "title": "Street Address",
+              "isRequired": true,
+              "autocomplete": "address-line1"
+            },
+            {
+              "type": "text",
+              "name": "address_line2",
+              "startWithNewLine": false,
+              "title": "Unit Number",
+              "autocomplete": "address-line2"
+            },
+            {
+              "type": "text",
+              "name": "address_city",
+              "title": "City",
+              "isRequired": true,
+              "autocomplete": "address-level2"
+            },
+            {
+              "type": "dropdown",
+              "name": "address_province",
+              "startWithNewLine": false,
+              "title": "Province",
+              "isRequired": true,
+              "choices": [
+                {
+                  "value": "BC",
+                  "text": "British Columbia"
+                },
+                {
+                  "value": "AB",
+                  "text": "Alberta"
+                },
+                {
+                  "value": "SK",
+                  "text": "Saskatchewan"
+                },
+                {
+                  "value": "MB",
+                  "text": "Manitoba"
+                },
+                {
+                  "value": "ON",
+                  "text": "Ontario"
+                },
+                {
+                  "value": "QC",
+                  "text": "Quebec"
+                },
+                {
+                  "value": "NB",
+                  "text": "New Brunswick"
+                },
+                {
+                  "value": "PE",
+                  "text": "Prince Edward Island"
+                },
+                {
+                  "value": "NS",
+                  "text": "Nova Scotia"
+                },
+                {
+                  "value": "NL",
+                  "text": "Newfoundland and Labrador"
+                },
+                {
+                  "value": "YT",
+                  "text": "Yukon"
+                },
+                {
+                  "value": "NU",
+                  "text": "Nunavut"
+                },
+                {
+                  "value": "NT",
+                  "text": "Northwest Territories"
+                }
+              ],
+              "autocomplete": "address-level1"
+            },
+            {
+              "type": "text",
+              "name": "address_postal_code",
+              "title": "Postal Code",
+              "isRequired": true,
+              "autocomplete": "postal-code",
+              "maskType": "pattern",
+              "maskSettings": {
+                "pattern": "a9a 9a9"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "trip_information",
+      "title": "Trip Information",
+      "elements": [
+        {
+          "type": "tagbox",
+          "name": "purpose_of_trip",
+          "title": "Purpose of Trip",
+          "isRequired": true,
+          "choices": [
+            "Vacation",
+            "Education/Research",
+            "Adoption",
+            "Visit Friends or Family",
+            "Humanitarian/Volunteer",
+            "Work (Urban - Office)",
+            "Work (Rural - Outdoors)",
+            "To Obtain Medical or Dental Care"
+          ],
+          "showOtherItem": true
+        },
+        {
+          "type": "tagbox",
+          "name": "type_of_accommodation",
+          "startWithNewLine": false,
+          "title": "Type of Accommodation",
+          "isRequired": true,
+          "choices": [
+            "Hotel/Resort",
+            "Small Hotel/B&B",
+            "Cruise Ship",
+            "Private/Rented Home (with locals)",
+            "Private/Rented Home (with family)",
+            "Private/Rented Home (expatriate or high-end)",
+            "Dormitory/Hostel",
+            "Camping/Outdoors",
+            "Upscale Camp/Lodge"
+          ],
+          "showOtherItem": true
+        },
+        {
+          "type": "comment",
+          "name": "planned_activities",
+          "title": "Planned Activities",
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "visiting_rural_areas",
+          "title": "Visiting Rural Areas?",
+          "isRequired": true,
+          "choices": [
+            "No",
+            "Yes",
+            "Not Sure"
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "visiting_urban_areas",
+          "title": "Visiting Urban Areas?",
+          "isRequired": true,
+          "choices": [
+            "No",
+            "Yes",
+            "Not Sure"
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "visiting_primitive_remote_areas",
+          "title": "Visiting Primitive/Remote Areas?",
+          "isRequired": true,
+          "choices": [
+            "No",
+            "Yes",
+            "Not Sure"
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "ascending_high_altitudes",
+          "title": "Ascending to high altitudes (8,000 ft or higher)?",
+          "isRequired": true,
+          "choices": [
+            "No",
+            "Yes",
+            "Not Sure"
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "medical_dental_procedures",
+          "title": "Will you be undergoing any medical/dental, tattooing, or piercing procedures?",
+          "isRequired": true,
+          "choices": [
+            "No",
+            "Yes",
+            "Not Sure"
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "exposure_to_animals",
+          "title": "Working with exposure to animals/wildlife?",
+          "isRequired": true,
+          "choices": [
+            "No",
+            "Yes",
+            "Not Sure"
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "new_sexual_partners",
+          "title": "Potentially having new sexual partners?",
+          "isRequired": true,
+          "choices": [
+            "No",
+            "Yes",
+            "Not Sure"
+          ]
+        },
+        {
+          "type": "paneldynamic",
+          "name": "travel_destinations",
+          "title": "Travel Destinations",
+          "templateElements": [
+            {
+              "type": "dropdown",
+              "name": "destination_country",
+              "title": "Country",
+              "isRequired": true,
+              "choicesByUrl": {
+                "url": "https://raw.githubusercontent.com/rockdocinc/vtc_country-json/refs/heads/master/src/country-by-name.json",
+                "valueName": "country",
+                "titleName": "country"
+              }
+            },
+            {
+              "type": "text",
+              "name": "destination_city",
+              "startWithNewLine": false,
+              "title": "City",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "destination_arrival_date",
+              "title": "Arrival Date",
+              "isRequired": true,
+              "inputType": "date"
+            },
+            {
+              "type": "dropdown",
+              "name": "destination_length_of_stay",
+              "startWithNewLine": false,
+              "title": "Length of Stay",
+              "isRequired": true,
+              "choices": [
+                "A Few Hours",
+                "One Day",
+                "A Few Days (2-4 Nights)",
+                "About a Week (5-7 Nights)",
+                "1-2 Weeks",
+                "2-3 Weeks",
+                "About a Month",
+                "1-3 Months",
+                "3-6 Months",
+                "6 Months to a Year",
+                "More than a Year"
+              ]
+            }
+          ],
+          "panelCount": 1,
+          "minPanelCount": 1,
+          "addPanelText": "Add Destination"
+        },
+        {
+          "type": "text",
+          "name": "trip_end_date",
+          "title": "Trip End Date",
+          "isRequired": true,
+          "inputType": "date"
+        },
+        {
+          "type": "panel",
+          "name": "layovers",
+          "title": "Layovers",
+          "elements": [
+            {
+              "type": "boolean",
+              "name": "has_layovers",
+              "title": "Do you have any layovers?",
+              "isRequired": true
+            },
+            {
+              "type": "paneldynamic",
+              "name": "layover_list",
+              "visibleIf": "{has_layovers} = true",
+              "title": "Please list all layovers",
+              "templateElements": [
+                {
+                  "type": "dropdown",
+                  "name": "layover_country",
+                  "title": "Layover Country",
+                  "isRequired": true,
+                  "choicesByUrl": {
+                    "url": "https://raw.githubusercontent.com/rockdocinc/vtc_country-json/refs/heads/master/src/country-by-name.json",
+                    "valueName": "country",
+                    "titleName": "country"
+                  }
+                }
+              ],
+              "panelCount": 1,
+              "minPanelCount": 1,
+              "addPanelText": "Add Layover"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "medical_history",
+      "title": "Medical History",
+      "elements": [
+        {
+          "type": "panel",
+          "name": "past_medical_history",
+          "title": "Past Medical History and Treatments",
+          "elements": [
+            {
+              "type": "boolean",
+              "name": "has_past_medical_history",
+              "title": "Do you have any pertinent past medical history, or treatments?",
+              "isRequired": true
+            },
+            {
+              "type": "comment",
+              "name": "past_medical_history_details",
+              "visibleIf": "{has_past_medical_history} = true",
+              "title": "Describe your past medical history",
+              "isRequired": true
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "allergies",
+          "title": "Allergies",
+          "elements": [
+            {
+              "type": "boolean",
+              "name": "has_allergies",
+              "title": "Do you have any allergies (Food, Drug, Environmental, etc.)?",
+              "isRequired": true
+            },
+            {
+              "type": "tagbox",
+              "name": "allergy_list",
+              "visibleIf": "{has_allergies} = true",
+              "title": "Which of the following allergens apply?",
+              "isRequired": true,
+              "choices": [
+                {
+                  "value": "antibiotics",
+                  "text": "Antibiotics (penicillin, sulfa, etc)"
+                },
+                {
+                  "value": "eggs",
+                  "text": "Eggs"
+                },
+                {
+                  "value": "latex",
+                  "text": "Latex"
+                },
+                {
+                  "value": "gelatin",
+                  "text": "Gelatin"
+                },
+                {
+                  "value": "yeast",
+                  "text": "Yeast"
+                },
+                {
+                  "value": "bees_wasps",
+                  "text": "Bees/Wasps"
+                },
+                {
+                  "value": "seasonal",
+                  "text": "Seasonal"
+                }
+              ],
+              "showOtherItem": true,
+              "otherText": "Other (list)"
+            },
+            {
+              "type": "comment",
+              "name": "allergy_reaction",
+              "visibleIf": "{has_allergies} = true and {allergy_list} notempty",
+              "title": "What was the allergic reaction?",
+              "isRequired": true
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "obstetrics_gynecological",
+          "title": "Obstetrics & Gynecological",
+          "elements": [
+            {
+              "type": "boolean",
+              "name": "is_pregnant_breastfeeding_planning",
+              "title": "Are you Pregnant, Breastfeeding, or Planning Pregnancy?",
+              "isRequired": true
+            },
+            {
+              "type": "dropdown",
+              "name": "pregnancy_status",
+              "visibleIf": "{is_pregnant_breastfeeding_planning} = true",
+              "title": "Which of the following apply?",
+              "isRequired": true,
+              "choices": [
+                {
+                  "value": "pregnant",
+                  "text": "Pregnant"
+                },
+                {
+                  "value": "breastfeeding",
+                  "text": "Breastfeeding"
+                },
+                {
+                  "value": "planning",
+                  "text": "Possible Pregnancy in Next 3 Months"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "name": "pregnancy_weeks",
+              "visibleIf": "{pregnancy_status} = 'pregnant'",
+              "title": "How many weeks along are you in your pregnancy?",
+              "isRequired": true,
+              "inputType": "number",
+              "min": 0,
+              "max": 42,
+              "step": 1
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "immune_system",
+          "title": "Immune System",
+          "elements": [
+            {
+              "type": "boolean",
+              "name": "is_immunocompromised",
+              "title": "Are you Immunocompromised?",
+              "isRequired": true
+            },
+            {
+              "type": "tagbox",
+              "name": "immunocompromised_conditions",
+              "visibleIf": "{is_immunocompromised} = true",
+              "title": "Which of the following apply?",
+              "isRequired": true,
+              "choices": [
+                {
+                  "value": "oral_steroids",
+                  "text": "Oral Steroid Use (Within last 3 months)"
+                },
+                {
+                  "value": "hiv_aids",
+                  "text": "HIV/AIDS Positive"
+                },
+                {
+                  "value": "cancer_treatment",
+                  "text": "Cancer Treatment (Radiation, or Chemotherapy within last 3 months)"
+                },
+                {
+                  "value": "immunosuppressant",
+                  "text": "Immunosuppressant Medication or Treatments"
+                },
+                {
+                  "value": "transplant",
+                  "text": "Organ, Bone Marrow or Stem Cell Transplant"
+                }
+              ],
+              "showOtherItem": true
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "medications",
+          "title": "Medications",
+          "elements": [
+            {
+              "type": "boolean",
+              "name": "takes_medications",
+              "title": "Are you currently taking any medications including Prescription or Over-the-Counter Medication, Herbal/Homeopathic Products, Vitamins, or Supplements?",
+              "isRequired": true
+            },
+            {
+              "type": "comment",
+              "name": "medication_details",
+              "visibleIf": "{takes_medications} = true",
+              "title": "What medication, or products are you currently taking?",
+              "isRequired": true
+            },
+            {
+              "type": "radiogroup",
+              "name": "wants_prescription_refill",
+              "visibleIf": "{takes_medications} = true",
+              "title": "Do you want our team to help you get your prescription medication refilled?",
+              "isRequired": true,
+              "choices": [
+                {
+                  "value": "no",
+                  "text": "No"
+                },
+                {
+                  "value": "yes",
+                  "text": "Yes"
+                },
+                {
+                  "value": "not_sure",
+                  "text": "Not Sure"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "immunization_history",
+      "title": "Immunization History",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "has_prior_vaccinations",
+          "title": "Do you have any prior vaccination or immunization history?",
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "vaccination_record_method",
+          "visibleIf": "{has_prior_vaccinations} = true",
+          "title": "How would you like to share your vaccination records?",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "upload",
+              "text": "Upload Records"
+            },
+            {
+              "value": "manual",
+              "text": "Enter Manually"
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "name": "vaccination_records_upload",
+          "visibleIf": "{has_prior_vaccinations} = true and {vaccination_record_method} = 'upload'",
+          "title": "Upload Vaccination Records",
+          "isRequired": true,
+          "allowMultiple": true,
+          "acceptedCategories": [
+            "image",
+            "document"
+          ],
+          "waitForUpload": true,
+          "maxSize": 10485760,
+          "maxFiles": 8,
+          "needConfirmRemoveFile": true,
+          "sourceType": "file-camera"
+        },
+        {
+          "type": "paneldynamic",
+          "name": "vaccination_history",
+          "visibleIf": "{has_prior_vaccinations} = true and {vaccination_record_method} = 'manual'",
+          "title": "Vaccination History",
+          "templateElements": [
+            {
+              "type": "dropdown",
+              "name": "vaccine_name",
+              "title": "Vaccine",
+              "isRequired": true,
+              "choices": [
+                "Cholera (Oral)",
+                "Hepatitis A",
+                "Hepatitis A / Typhoid (Vivaxim)",
+                "Hepatitis B",
+                "Hepatitis A/B",
+                "HiB",
+                "HPV (9-valent/4-valent/2-valent)",
+                "Influenza",
+                "Japanese Encephalitis (Cell Based)",
+                "Measles/Mumps/Rubella",
+                "Meningococcal (Quad Conjugate/Polysaccharide)",
+                "Meningococcal (Monovalent B)",
+                "Pneumococcal Conjugate (PCV 13)",
+                "Pneumococcal Polysaccharide (PPSV23)",
+                "Polio Primary Series",
+                "Polio Adult Booster (1 Dose)",
+                "Rabies (Pre or Post Exposure)",
+                "Rotavirus",
+                "Tetanus Series",
+                "Tdap (Tetanus/Diphtheria/Pertussis)",
+                "Typhoid (Oral)",
+                "Typhoid (Injection)",
+                "Varicella",
+                "Yellow Fever",
+                "Zoster (Shingles)",
+                "COVID-19"
+              ],
+              "showOtherItem": true
+            },
+            {
+              "type": "text",
+              "name": "vaccine_date",
+              "startWithNewLine": false,
+              "title": "Date of Vaccination",
+              "isRequired": true,
+              "inputType": "date"
+            }
+          ],
+          "panelCount": 1,
+          "minPanelCount": 1,
+          "addPanelText": "Add Vaccine"
+        }
+      ]
+    },
+    {
+      "name": "other_information",
+      "title": "Other Information",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "has_additional_information",
+          "title": "Is there anything else we should know about your health or trip to best advise you on your travel medicine requirements?",
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "additional_information",
+          "visibleIf": "{has_additional_information} = true",
+          "title": "Please provide any additional information",
+          "isRequired": true
+        }
+      ]
+    }
+  ],
+  "partialSendEnabled": true,
+  "showProgressBar": true,
+  "progressBarType": "requiredQuestions",
+  "textUpdateMode": "onTyping",
+  "autoGrowComment": true,
+  "showPreviewBeforeComplete": true,
+  "headerView": "advanced"
+}
