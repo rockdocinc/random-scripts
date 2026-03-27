@@ -874,6 +874,12 @@
           "visibleIf": "{has_additional_information} = true",
           "title": "Please provide any additional information",
           "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "booking_id",
+          "visible": false,
+          "title": "Booking ID"
         }
       ]
     }
@@ -881,6 +887,7 @@
   "partialSendEnabled": true,
   "showProgressBar": true,
   "progressBarType": "requiredQuestions",
+  "storeOthersAsComment": false,
   "textUpdateMode": "onTyping",
   "autoGrowComment": true,
   "showPreviewBeforeComplete": true,
